@@ -1,0 +1,45 @@
+{
+  "env": {
+    "browser": true
+  },
+  "extends": ["standard", "plugin:prettier/recommended"],
+  "plugins": ["@typescript-eslint", "react", "import"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          ["builtin", "external"],
+          "internal",
+          ["parent", "sibling", "index"]
+        ],
+        "pathGroups": [
+          {
+            "pattern": "@*/**",
+            "group": "internal"
+          }
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "@typescript-eslint/no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true
+      }
+    ],
+    "no-shadow": "error"
+  }
+}
