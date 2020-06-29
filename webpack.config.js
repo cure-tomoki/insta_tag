@@ -19,7 +19,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
-      '@': resolve('src'),
+      '~': resolve('src'),
     },
   },
   devtool: isDev && 'inline-source-map',

@@ -7,7 +7,8 @@
   "license": "MIT",
   "dependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "reselect": "^4.0.0"
   },
   "devDependencies": {
     "@types/react": "^16.9.41",
