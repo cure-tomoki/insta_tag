@@ -6,9 +6,11 @@
   "author": "tomotetra",
   "license": "MIT",
   "dependencies": {
+    "immer": "^7.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "typescript-fsa": "^3.0.0"
   },
   "devDependencies": {
     "@types/react": "^16.9.41",
@@ -33,7 +35,7 @@
   },
   "scripts": {
     "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=production webpack-dev-server",
+    "dev": "NODE_ENV=development webpack-dev-server",
     "lint": "eslint --ext .ts,.tsx,.js src"
   }
 }

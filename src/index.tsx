@@ -1,13 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import App from '~/container/App';
-import rootContext from '~/context';
-import rootState from '~/ducks';
+import App from '~/containers/App';
 
-ReactDOM.render(
-  <rootContext.Provider value={rootState}>
-    <App />
-  </rootContext.Provider>,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));
