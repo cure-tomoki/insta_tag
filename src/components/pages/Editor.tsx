@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import EditorContext from '~/contexts/editorContext';
+import { Context } from '~/context';
 import * as EditorDuck from '~/ducks/EditorDuck';
 
 const Editor = () => {
-  const { state, dispatch } = React.useContext(EditorContext);
+  const { state, dispatch } = React.useContext(Context);
 
   const [text, setText] = React.useState('');
   const hashtags = EditorDuck.selectors.getHashtags(state);
@@ -19,7 +19,7 @@ const Editor = () => {
     if (text.length === 0) {
       return;
     }
-    dispatch(EditorDuck.editorActions.addHashTag({ name: text }));
+    dispatch(EditorDuck.actions.addHashTag({ name: text }));
     setText('');
   };
 
