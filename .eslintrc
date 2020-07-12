@@ -4,7 +4,7 @@
   },
   "extends": ["standard", "plugin:prettier/recommended"],
   "plugins": ["@typescript-eslint", "react", "import"],
-  "parser": "@typescript-eslint/parser",
+  "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
