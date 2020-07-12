@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import EditorImageDropZone from '~/components/organisms/EditorImageDropZone';
 import { Context } from '~/context';
 import * as EditorDuck from '~/ducks/EditorDuck';
 
@@ -25,6 +26,7 @@ const Editor = () => {
 
   return (
     <>
+      <EditorImageDropZone />
       <form onSubmit={handleSubmit}>
         <input type="text" onChange={handleTextChange} value={text}></input>
         <button type="submit" disabled={!withinLimit}>
