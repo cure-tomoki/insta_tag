@@ -3,23 +3,29 @@ import * as React from 'react';
 import ImageDropZone from '~/components/molecules/ImageDropZone';
 import { Context } from '~/context';
 import * as EditorDuck from '~/ducks/EditorDuck';
+import useExifReader from '~/hooks/useExifReader';
 
 const EditorImageDropZone = () => {
   const { state, dispatch } = React.useContext(Context);
-
-  const imageFile = EditorDuck.selectors.getImageFile(state);
-  console.log({ imageFile });
-
-  const previewImageURL = React.useMemo(() => {
-    return imageFile ? URL.createObjectURL(imageFile) : null;
-  }, [imageFile]);
-
+  const { image, readExifData } = useExifReader(
+    EditorDuck.selectors.getImageFile(state)
+  );
   const handleImageDrop = <x extends File>(acceptedFiles: x[]) => {
     const file = acceptedFiles[0]; // ignore rest :p
-    dispatch(EditorDuck.actions.setImageFile({ file }));
+    readExifData(file)
+      .then((exifData) => {
+        dispatch(EditorDuck.actions.setImageFile({ file }));
+        dispatch(EditorDuck.actions.setExif({ exifData }));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
-    <ImageDropZone onDrop={handleImageDrop} previewImageURL={previewImageURL} />
+    <ImageDropZone
+      onDrop={handleImageDrop}
+      previewImageURL={image.previewImageURL}
+    />
   );
 };
 

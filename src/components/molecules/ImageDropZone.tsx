@@ -25,7 +25,7 @@ const ImageDropZone = (props: Props) => {
         </>
       )}
       {props.previewImageURL !== undefined && (
-        <img src={props.previewImageURL} />
+        <img src={props.previewImageURL || undefined} />
       )}
     </div>
   );

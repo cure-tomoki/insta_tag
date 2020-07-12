@@ -1825,6 +1825,13 @@ execa@^1.0.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
+exifreader@^3.12.0:
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/exifreader/-/exifreader-3.12.0.tgz#78e881d132330cc0928b4c247a5f805964f5f296"
+  integrity sha512-uxYUCCcJRu/fS4Ig2Ys1H6pEZPnKynNPkn8WO+hD/dtpi2NXK38OgvyBgQa+LlsWSvCtvAtmT3iER49dyiiqow==
+  optionalDependencies:
+    xmldom "^0.1.31"
+
 expand-brackets@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/expand-brackets/-/expand-brackets-2.1.4.tgz#b77735e315ce30f6b6eff0f83b04151a22449622"
@@ -5132,6 +5139,11 @@ ws@^6.2.1:
   integrity sha512-GIyAXC2cB7LjvpgMt9EKS2ldqr0MTrORaleiOno6TweZ6r3TKtoFQWay/2PceJ3RuBasOHzXNn5Lrw1X0bEjqA==
   dependencies:
     async-limiter "~1.0.0"
+
+xmldom@^0.1.31:
+  version "0.1.31"
+  resolved "https://registry.yarnpkg.com/xmldom/-/xmldom-0.1.31.tgz#b76c9a1bd9f0a9737e5a72dc37231cf38375e2ff"
+  integrity sha512-yS2uJflVQs6n+CyjHoaBmVSqIDevTAWrzMmjG1Gc7h1qQ7uVozNhEPJAwZXWyGQ/Gafo3fCwrcaokezLPupVyQ==
 
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.2"
