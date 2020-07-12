@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import * as React from 'react';
 
 import EditorImageDropZone from '~/components/organisms/EditorImageDropZone';
@@ -26,6 +27,7 @@ const Editor = () => {
 
   return (
     <>
+      <Title>Insta Tag</Title>
       <EditorImageDropZone />
       {/* <form onSubmit={handleSubmit}>
         <input type="text" onChange={handleTextChange} value={text}></input>
@@ -41,5 +43,9 @@ const Editor = () => {
     </>
   );
 };
+
+const Title = styled.h1({
+  color: 'red',
+});
 
 export default Editor;

@@ -3,16 +3,17 @@
     [
       "@babel/preset-env",
       {
-        "targets": {
-          "node": "current",
-          "browsers": ["> 1% in JP", "iOS >= 11", "Android >= 8"]
-        },
-        "useBuiltIns": "entry",
+        "targets": "> 0.25%, not dead",
+        "useBuiltIns": "usage",
         "corejs": 3
       }
     ],
     "@babel/preset-typescript",
     "@babel/preset-react"
   ],
-  "plugins": ["@babel/plugin-proposal-class-properties"]
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-export-default-from",
+    "babel-plugin-styled-components"
+  ]
 }
