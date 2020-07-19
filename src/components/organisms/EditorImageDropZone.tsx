@@ -18,7 +18,7 @@ const EditorImageDropZone = () => {
         dispatch(EditorDuck.actions.setExif({ exifData }));
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   return (
