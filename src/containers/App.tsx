@@ -27,6 +27,7 @@ const BaseStyleApplier = createGlobalStyle`
 ${reset}
 body {
   font-size: ${vars.fontSize.xs};
+  line-height: 1.5;
   color: ${vars.colors.darkgray};
 }
 `;

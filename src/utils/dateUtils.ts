@@ -1,5 +1,3 @@
-import { assert } from '~/utils/commonUtils';
-
 enum positions {
   year = 0,
   month,
@@ -10,7 +8,11 @@ enum positions {
 }
 
 // converts datetime string of format "YYYY:MM:DD hh:mm:ss" to date string
-export const parseExifDate = (datetime: string): string | undefined => {
+export const parseExifDate = (datetime?: string): string | undefined => {
+  if (datetime === undefined) {
+    return undefined;
+  }
+
   const tokens = datetime.split(/[:\s]+/);
 
   if (tokens.length !== 6) {

@@ -33,6 +33,10 @@ export const selectors = {
     (state: RootState) => state.editor.hashtags,
     (hashtags) => hashtags.length <= constants.instagram.hastagCountMax
   ),
+  getExifData: createSelector(
+    (state: RootState) => state.editor.exifData,
+    (exifData) => exifData
+  ),
 };
 
 const actionTypes = {

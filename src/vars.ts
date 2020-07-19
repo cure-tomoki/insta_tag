@@ -39,8 +39,14 @@ export const radius = {
   round: radiusBase * 100,
 };
 
+export const fontFamily = {
+  default: 'unset',
+  monospaced: 'Andale Mono, Courier New, Lucida Console',
+};
+
 // font sizes
 export const fontSize = {
+  xxxs: '.6rem',
   xxs: '.8rem',
   xs: '1rem',
   s: '1.2rem',
