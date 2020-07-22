@@ -21,11 +21,11 @@ const ImageDropZone = (props: Props) => {
       <input {...getInputProps()} accept={acceptedFileTypes} />
       {props.previewImageURL === null ? (
         // no image -> display placeholder
-        <DropZonePlaceholder>
-          <DropZonePlaceholderContent>
+        <DropZonePlaceholderContainer>
+          <DropZonePlaceholder>
             <p>ファイルをアップロード</p>
-          </DropZonePlaceholderContent>
-        </DropZonePlaceholder>
+          </DropZonePlaceholder>
+        </DropZonePlaceholderContainer>
       ) : (
         // has image -> show image preview
         <DropZonePreviewImg src={props.previewImageURL} />
@@ -39,18 +39,25 @@ const DropZone = styled.div({
   maxWidth: '100%',
 });
 
-const DropZonePlaceholder = styled.div({
+const DropZonePlaceholderContainer = styled.div({
   position: 'relative',
   width: '100%',
-  paddingTop: '100%', // 1:1 aspect ratio
-  backgroundColor: vars.colors.lightsilver,
+  paddingTop: `${(2 / 3) * 100}%`, // aspect ratio (height / width)
 });
 
-const DropZonePlaceholderContent = styled.div({
+const DropZonePlaceholder = styled.div({
+  display: 'flex',
   position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+  margin: vars.spacing.quadruple,
+  borderRadius: vars.radius.double,
+  border: `4px dotted ${vars.colors.silver}`,
+  color: vars.colors.gray,
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
 const DropZonePreviewImg = styled.img({
