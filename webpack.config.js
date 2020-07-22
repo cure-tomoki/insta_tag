@@ -1,9 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
 
 const target = process.env.NODE_ENV || 'development';
 const isDev = target === 'development';
+const isProd = target === 'production';
 
 const resolve = (dir) => path.resolve(__dirname, dir);
 
@@ -42,6 +45,11 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled',
+      generateStatsFile: isProd,
+      statsFilename: isProd && resolve('stats.json'),
     }),
   ],
 };
