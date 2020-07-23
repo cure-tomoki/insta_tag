@@ -1,9 +1,11 @@
+import useComponentSize from '@rehooks/component-size';
 import * as React from 'react';
 import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
 
 import * as vars from '~/vars';
 
+const MAX_DISPLAY_ASPECT_RATIO = 8 / 10; // width / height
 const acceptedFileTypes = ['image/jpeg', 'image/png'].join(',');
 
 interface Props {
@@ -11,13 +13,23 @@ interface Props {
   previewImageURL: string | null;
 }
 
+const calculateMaxHeight = (width: number) => width / MAX_DISPLAY_ASPECT_RATIO;
+
 const ImageDropZone = (props: Props) => {
+  const imageContainerRef = React.useRef(null);
+  const [maxHeight, setMaxHeight] = React.useState<number>();
+  const size = useComponentSize(imageContainerRef);
+
   const onDrop = React.useCallback(props.onDrop, []);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
+  React.useEffect(() => {
+    setMaxHeight(calculateMaxHeight(size.width));
+  }, [imageContainerRef, size]);
+
   return (
-    <DropZone {...getRootProps()}>
+    <DropZone ref={imageContainerRef} {...getRootProps()}>
       <input {...getInputProps()} accept={acceptedFileTypes} />
       {props.previewImageURL === null ? (
         // no image -> display placeholder
@@ -28,14 +40,18 @@ const ImageDropZone = (props: Props) => {
         </DropZonePlaceholderContainer>
       ) : (
         // has image -> show image preview
-        <DropZonePreviewImg src={props.previewImageURL} />
+        <DropZonePreviewImgContainer ref={imageContainerRef}>
+          <DropZonePreviewImg
+            src={props.previewImageURL}
+            style={{ maxHeight }}
+          />
+        </DropZonePreviewImgContainer>
       )}
     </DropZone>
   );
 };
 
 const DropZone = styled.div({
-  display: 'flex',
   position: 'relative',
   maxWidth: '100%',
 });
@@ -61,7 +77,13 @@ const DropZonePlaceholder = styled.div({
   justifyContent: 'center',
 });
 
+const DropZonePreviewImgContainer = styled.div({
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+});
 const DropZonePreviewImg = styled.img({
+  objectFit: 'contain',
   maxWidth: '100%',
 });
 
