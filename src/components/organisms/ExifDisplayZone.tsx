@@ -1,4 +1,4 @@
-import { Camera } from '@styled-icons/feather';
+import { Camera } from '@styled-icons/boxicons-solid';
 import * as isEmpty from 'lodash/isEmpty';
 import * as React from 'react';
 import styled from 'styled-components';

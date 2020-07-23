@@ -951,10 +951,18 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.5.tgz#77211291c1900a700b8a78cfafda3160d76949ed"
   integrity sha512-OWORNpfjMsSSUBVrRBVGECkhWcULOAJz9ZW8uK9qgxD+87M7jHRcvh/A96XXNhXTLmKcoYSQtBEX7lHMO7YRwg==
 
-"@styled-icons/feather@^10.6.0":
+"@styled-icons/boxicons-logos@^10.6.0":
   version "10.6.0"
-  resolved "https://registry.yarnpkg.com/@styled-icons/feather/-/feather-10.6.0.tgz#46c38f7f0099fe8ff766eecd313ab253630d4767"
-  integrity sha512-jejgk46dKs5IMwsLhGC9UHm8x2U6cAppYO/ZlaGjgNcvnCd6532+mD/BDl2LRegfzblEutJObNmP3oWjB+tZvQ==
+  resolved "https://registry.yarnpkg.com/@styled-icons/boxicons-logos/-/boxicons-logos-10.6.0.tgz#ba17d2e761de2a9b04ffa2aa42358596316d6a69"
+  integrity sha512-1DkpIWHKIKT/bsdj/ciH1eMDW5ICFms7W/osu9WITDQdxiknw/3k4re8Q8BREPGuX2N2pVnl+qfni35G8mWYKQ==
+  dependencies:
+    "@babel/runtime" "^7.10.3"
+    "@styled-icons/styled-icon" "^10.6.0"
+
+"@styled-icons/boxicons-solid@^10.6.0":
+  version "10.6.0"
+  resolved "https://registry.yarnpkg.com/@styled-icons/boxicons-solid/-/boxicons-solid-10.6.0.tgz#0b13bb1ece57b6469d272e913b412e8d6bd9b908"
+  integrity sha512-NF/iA+3TRj4cLmGl9KVr4aaaFpo9CIm7+LpSyotSei9dBFDFkoG4YT6r6FrkR8bHVAGRr5ADU9DQSop3d7lPSQ==
   dependencies:
     "@babel/runtime" "^7.10.3"
     "@styled-icons/styled-icon" "^10.6.0"

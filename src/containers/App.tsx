@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
+import Footer from '~/components/organisms/Footer';
 import EditorPage from '~/components/pages/Editor';
 import { Provider } from '~/context';
 import * as vars from '~/vars';
@@ -18,6 +19,8 @@ const App: React.FC = () => {
           <EditorPage />
         </PageContainer>
       </Provider>
+
+      <Footer />
     </>
   );
 };
