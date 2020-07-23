@@ -5,6 +5,9 @@
   "repository": "https://github.com/tomotetra/insta_tag",
   "author": "tomotetra",
   "license": "MIT",
+  "engines": {
+    "node": "12.x"
+  },
   "dependencies": {
     "@styled-icons/boxicons-logos": "^10.6.0",
     "@styled-icons/boxicons-solid": "^10.6.0",
