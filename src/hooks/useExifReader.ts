@@ -36,10 +36,7 @@ const useExifReader = (file: File | null) => {
         model: exif.Model?.description,
       },
       lens: {
-        makeModel: getMakeModel(
-          exif.LensMake?.description,
-          exif.LensModel?.description
-        ),
+        makeModel: exif.LensModel?.description,
         make: exif.LensMake?.description,
         model: exif.LensModel?.description,
       },

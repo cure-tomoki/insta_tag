@@ -75,7 +75,7 @@ const ImageArea = styled.div({
 });
 
 const CaptionArea = styled.div({
-  padding: `0 ${vars.spacing.double}px`,
+  padding: `0 ${vars.spacing.double}px ${vars.spacing.double}px`,
 });
 
 const MockButtonContainer = styled.div({

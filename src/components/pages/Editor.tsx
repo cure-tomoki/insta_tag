@@ -1,8 +1,8 @@
 import * as React from 'react';
 
+import EditorCaptionEditor from '~/components/organisms/EditorCaptionEditor';
 import EditorHeader from '~/components/organisms/EditorHeader';
 import EditorImageDropZone from '~/components/organisms/EditorImageDropZone';
-import ExifDisplayZone from '~/components/organisms/ExifDisplayZone';
 import InstaMockTemplate from '~/components/templates/instaMock';
 
 const Editor = () => {
@@ -10,7 +10,7 @@ const Editor = () => {
     <InstaMockTemplate
       HeaderContent={EditorHeader}
       ImageAreaContent={EditorImageDropZone}
-      CaptionAreaContent={ExifDisplayZone}
+      CaptionAreaContent={EditorCaptionEditor}
     />
   );
 };

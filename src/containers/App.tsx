@@ -34,6 +34,9 @@ body {
   color: ${vars.colors.darkgray};
   background-color: ${vars.colors.whitesmoke};
 }
+*:focus {
+  outline: 2px solid ${vars.colors.lightBlue};
+}
 `;
 
 const PageContainer = styled.div({
