@@ -1,6 +1,6 @@
 declare namespace Instatag {
   interface ExifData {
-    creatiedDate?: string;
+    createdDate?: string;
     camera?: {
       makeModel?: string;
       make?: string;

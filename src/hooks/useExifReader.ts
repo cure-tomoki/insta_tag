@@ -26,7 +26,7 @@ const useExifReader = (file: File | null) => {
     const exif = ExifReader.load(fileBuffer);
     console.info({ exif });
     return {
-      creatiedDate: parseExifDate(exif.DateTime?.description),
+      createdDate: parseExifDate(exif.DateTime?.description),
       camera: {
         makeModel: getMakeModel(
           exif.Make?.description,

@@ -32,35 +32,23 @@ const InstaMockTemplate = ({
         <MockButtonContainer>
           <MockButtonSection>
             <MockButton>
-              <InstaMockIcons
-                type="like"
-                size={24}
-                fill={vars.colors.darkgray}
-              />
+              <InstaMockIcons type="like" size={24} fill={vars.colors.gray} />
             </MockButton>
             <MockButton>
               <InstaMockIcons
                 type="comment"
                 size={24}
-                fill={vars.colors.darkgray}
+                fill={vars.colors.gray}
               />
             </MockButton>
             <MockButton>
-              <InstaMockIcons
-                type="share"
-                size={24}
-                fill={vars.colors.darkgray}
-              />
+              <InstaMockIcons type="share" size={24} fill={vars.colors.gray} />
             </MockButton>
           </MockButtonSection>
 
           <MockButtonSection>
             <MockButton>
-              <InstaMockIcons
-                type="save"
-                size={24}
-                fill={vars.colors.darkgray}
-              />
+              <InstaMockIcons type="save" size={24} fill={vars.colors.gray} />
             </MockButton>
           </MockButtonSection>
         </MockButtonContainer>
