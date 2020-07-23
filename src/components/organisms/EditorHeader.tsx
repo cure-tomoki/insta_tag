@@ -13,7 +13,7 @@ const EditorHeader = () => (
 const Container = styled.div({
   display: 'flex',
   alignItems: 'center',
-  padding: vars.spacing.double,
+  padding: `${vars.spacing.double}px 0`,
 });
 
 const Image = styled.div({
