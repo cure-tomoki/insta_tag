@@ -35,6 +35,7 @@ const ImageDropZone = (props: Props) => {
 };
 
 const DropZone = styled.div({
+  display: 'flex',
   position: 'relative',
   maxWidth: '100%',
 });

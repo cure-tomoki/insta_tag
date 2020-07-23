@@ -21,7 +21,7 @@ const Image = styled.div({
   width: 32,
   height: 32,
   content: '',
-  background: vars.colors.white,
+  background: vars.colors.whitesmoke,
   borderRadius: vars.radius.round,
   border: `.5px solid ${vars.colors.whitesmoke}`,
 });
