@@ -13,11 +13,13 @@ const resolve = (dir) => path.resolve(__dirname, dir);
 module.exports = {
   mode: target,
   target: 'web',
-  entry: ['./src/index.tsx'],
+  entry: {
+    main: './src/index.tsx',
+  },
   output: {
     path: resolve('dist'),
     publicPath: '/',
-    filename: '[name].[hash].js',
+    filename: '[name].[contenthash].js',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -39,12 +41,33 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: Infinity,
+      minSize: 0,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          filename: '[contenthash].js',
+          name(module) {
+            const packageName = module.context.match(
+              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+            )[1];
+            return `npm.${packageName.replace('@', '')}`;
+          },
+        },
+      },
+    },
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(target),
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      scriptLoading: 'defer',
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',

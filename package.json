@@ -60,8 +60,8 @@
   },
   "scripts": {
     "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development webpack-dev-server",
+    "dev": "webpack-dev-server",
     "lint": "eslint --ext .ts,.tsx,.js src",
-    "analyze": "webpack-bundle-analyzer stats.json"
+    "analyze": "webpack-bundle-analyzer stats.json dist/"
   }
 }
