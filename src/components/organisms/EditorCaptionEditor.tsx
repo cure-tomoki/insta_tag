@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { Context } from '~/context';
 import * as EditorDuck from '~/ducks/EditorDuck';
+import useRootContext from '~/hooks/useRootContext';
 import * as vars from '~/vars';
 
 const EMPTY_LINE = '.';
@@ -30,7 +30,7 @@ const generateCaptionText = (exif: Instatag.ExifData): string => {
 };
 
 const EditorCaptionEditor = () => {
-  const { state } = React.useContext(Context);
+  const { state } = useRootContext();
   const file = EditorDuck.selectors.getImageFile(state);
   const exif = EditorDuck.selectors.getExifData(state);
 
@@ -40,10 +40,12 @@ const EditorCaptionEditor = () => {
   const [text, setText] = React.useState('');
   const [isEditMode, setEditMode] = React.useState(false);
 
-  React.useEffect(() => setText(generateCaptionText(exif)), [exif]);
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
+
+  // generate caption text
+  React.useEffect(() => setText(generateCaptionText(exif)), [exif]);
 
   // manage focus
   React.useEffect(() => {

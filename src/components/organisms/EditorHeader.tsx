@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { Context } from '~/context';
 import * as EditorDuck from '~/ducks/EditorDuck';
+import useRootContext from '~/hooks/useRootContext';
 import * as vars from '~/vars';
 
 const EMOJI_LIST = [
@@ -29,7 +29,7 @@ const randomEmoji = () =>
   EMOJI_LIST[Math.floor(Math.random() * EMOJI_LIST.length)];
 
 const EditorHeader = () => {
-  const { state } = React.useContext(Context);
+  const { state } = useRootContext();
   const file = EditorDuck.selectors.getImageFile(state);
   const { createdDate } = EditorDuck.selectors.getExifData(state);
 

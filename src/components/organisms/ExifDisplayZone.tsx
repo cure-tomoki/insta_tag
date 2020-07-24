@@ -3,8 +3,8 @@ import * as isEmpty from 'lodash/isEmpty';
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { Context } from '~/context';
 import * as EditorDuck from '~/ducks/EditorDuck';
+import useRootContext from '~/hooks/useRootContext';
 import * as vars from '~/vars';
 
 const renderGearSection = (sectionName: string, value: string | undefined) => (
@@ -36,7 +36,7 @@ const renderSettingsListItem = (
 );
 
 const ExifDisplayZone = () => {
-  const { state } = React.useContext(Context);
+  const { state } = useRootContext();
   const exifData = EditorDuck.selectors.getExifData(state);
 
   const camera = exifData.camera?.makeModel;

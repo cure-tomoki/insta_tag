@@ -1,30 +1,28 @@
 import * as React from 'react';
 
 import ImageDropZone from '~/components/molecules/ImageDropZone';
-import { Context } from '~/context';
 import * as EditorDuck from '~/ducks/EditorDuck';
 import useExifReader from '~/hooks/useExifReader';
+import useImagePreview from '~/hooks/useImagePreview';
+import useRootContext from '~/hooks/useRootContext';
+
+const acceptedFileTypes = ['image/jpeg', 'image/png', 'image/heic'];
 
 const EditorImageDropZone = () => {
-  const { state, dispatch } = React.useContext(Context);
-  const { image, readExifData } = useExifReader(
-    EditorDuck.selectors.getImageFile(state)
-  );
+  const { dispatch } = useRootContext();
+  const previewImageURL = useImagePreview();
+  useExifReader();
+
   const handleImageDrop = <x extends File>(acceptedFiles: x[]) => {
-    const file = acceptedFiles[0]; // ignore rest :p
-    readExifData(file)
-      .then((exifData) => {
-        dispatch(EditorDuck.actions.setImageFile({ file }));
-        dispatch(EditorDuck.actions.setExif({ exifData }));
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    const acceptedFile = acceptedFiles[0]; // ignore rest :p
+    dispatch(EditorDuck.actions.setImageFile({ file: acceptedFile }));
   };
+
   return (
     <ImageDropZone
       onDrop={handleImageDrop}
-      previewImageURL={image.previewImageURL}
+      acceptedFileTypes={acceptedFileTypes}
+      previewImageURL={previewImageURL}
     />
   );
 };

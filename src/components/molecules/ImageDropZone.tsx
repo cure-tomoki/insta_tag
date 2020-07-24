@@ -6,10 +6,10 @@ import styled from 'styled-components';
 import * as vars from '~/vars';
 
 const MAX_DISPLAY_ASPECT_RATIO = 8 / 10; // width / height
-const acceptedFileTypes = ['image/jpeg', 'image/png'].join(',');
 
 interface Props {
   onDrop: <T extends File>(acceptedFiles: T[]) => void;
+  acceptedFileTypes: string[];
   previewImageURL: string | null;
 }
 
@@ -30,7 +30,7 @@ const ImageDropZone = (props: Props) => {
 
   return (
     <DropZone ref={imageContainerRef} {...getRootProps()}>
-      <input {...getInputProps()} accept={acceptedFileTypes} />
+      <input {...getInputProps()} accept={props.acceptedFileTypes.join(',')} />
       {props.previewImageURL === null ? (
         // no image -> display placeholder
         <DropZonePlaceholderContainer>
