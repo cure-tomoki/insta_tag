@@ -1,8 +1,19 @@
-import ExifReader from 'exifreader';
-import heic2any from 'heic2any';
-
 import { assert } from '~/utils/commonUtils';
 import { parseExifDate } from '~/utils/dateUtils';
+
+// lazy load exifreader library
+const loadExifReader = async () => {
+  const ExifReader = await import(
+    /* webpackChunkName: "exifreader" */ 'exifreader'
+  );
+  return ExifReader.default;
+};
+
+// lazy load heic2any library
+const loadHeic2any = async () => {
+  const heic2any = await import(/* webpackChunkName: "heic2any" */ 'heic2any');
+  return heic2any.default;
+};
 
 const getMakeModel = (make?: string, model?: string): string | undefined => {
   if (model === undefined) {
@@ -19,7 +30,7 @@ export const readExifData = async (
 ): Promise<Instatag.ExifData> => {
   assert(imageFile !== null, 'image file was not provided');
   const fileBuffer = await imageFile.arrayBuffer();
-  const exif = ExifReader.load(fileBuffer);
+  const exif = (await loadExifReader()).load(fileBuffer);
   return {
     createdDate: parseExifDate(exif.DateTime?.description),
     camera: {
@@ -42,7 +53,7 @@ export const readExifData = async (
 };
 
 const convertHeicToJpeg = async <x extends File>(heic: x): Promise<Blob> => {
-  const jpeg = await heic2any({
+  const jpeg = await (await loadHeic2any())({
     blob: heic,
     toType: 'image/jpeg',
     quality: 0.3,

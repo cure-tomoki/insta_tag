@@ -42,21 +42,14 @@ module.exports = {
     ],
   },
   optimization: {
-    runtimeChunk: 'single',
+    namedChunks: true,
     splitChunks: {
-      chunks: 'all',
-      maxInitialRequests: Infinity,
-      minSize: 0,
+      automaticNameDelimiter: '-',
       cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          filename: '[contenthash].js',
-          name(module) {
-            const packageName = module.context.match(
-              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-            )[1];
-            return `npm.${packageName.replace('@', '')}`;
-          },
+        vendors: {
+          test: /[\\/]node_modules[\\/](react|react-dom|styled-components|core-js)[\\/]/,
+          name: 'core-vendor',
+          chunks: 'all',
         },
       },
     },
