@@ -18,6 +18,7 @@ export const combineReducers = function <S>(
 };
 
 export const actionLogger = (action: AnyAction): void => {
-  // TODO: make log text fancy (aka easy to read)
+  console.groupCollapsed(`[ACTION] ${action.type}`);
   console.log(action);
+  console.groupEnd();
 };

@@ -31,8 +31,6 @@ const useImagePreview = (): string | null => {
       setPreviewImageURL(createObjectURL(imageFile));
     })();
   }, [file]);
-
-  console.log(previewImageURL);
   return previewImageURL;
 };
 

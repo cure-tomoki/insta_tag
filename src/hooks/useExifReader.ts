@@ -20,7 +20,6 @@ const readExifData = async (imageFile: File): Promise<Instatag.ExifData> => {
   assert(imageFile !== null, 'image file was not provided');
   const fileBuffer = await imageFile.arrayBuffer();
   const exif = ExifReader.load(fileBuffer);
-  console.info({ exif });
   return {
     createdDate: parseExifDate(exif.DateTime?.description),
     camera: {
