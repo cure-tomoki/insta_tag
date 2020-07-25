@@ -10,20 +10,25 @@ const actionCreator = actionCreatorFactory('editor');
 
 export interface EditorState {
   imageFile: File | null;
+  imagePreviewURL: string | null;
   exifData: Instatag.ExifData;
   hashtags: string[];
 }
 
 export const initialState: EditorState = {
   imageFile: null,
+  imagePreviewURL: null,
   exifData: {},
   hashtags: [],
 };
 
 export const selectors = {
-  getImageFile: createSelector(
-    (state: RootState) => state.editor.imageFile,
-    (imageFile) => imageFile
+  getImage: createSelector(
+    (state: RootState) => ({
+      file: state.editor.imageFile,
+      previewURL: state.editor.imagePreviewURL,
+    }),
+    (image) => image
   ),
   getHashtags: createSelector(
     (state: RootState) => state.editor.hashtags,
@@ -40,22 +45,25 @@ export const selectors = {
 };
 
 const actionTypes = {
-  SET_IMAGE_FILE: 'SET_IMAGE_FILE',
+  SET_IMAGE: 'SET_IMAGE',
   SET_EXIF: 'SET_EXIF',
   ADD_HASHTAG: 'ADD_HASHTAG',
 };
 
 export const actions = {
-  setImageFile: actionCreator<{ file: File }>(actionTypes.SET_IMAGE_FILE),
+  setImage: actionCreator<{ file: File; previewURL: string }>(
+    actionTypes.SET_IMAGE
+  ),
   setExif: actionCreator<{ exifData: Instatag.ExifData }>(actionTypes.SET_EXIF),
   addHashTag: actionCreator<{ name: string }>(actionTypes.ADD_HASHTAG),
 };
 
 export const reducer: Reducer<EditorState> = (state, action) => {
-  if (isType(action, actions.setImageFile)) {
+  if (isType(action, actions.setImage)) {
     return produce(state, (draft) => {
-      const { file } = action.payload;
+      const { file, previewURL } = action.payload;
       draft.imageFile = file;
+      draft.imagePreviewURL = previewURL;
     });
   } else if (isType(action, actions.setExif)) {
     return produce(state, (draft) => {

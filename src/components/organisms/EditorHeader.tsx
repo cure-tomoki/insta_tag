@@ -30,7 +30,7 @@ const randomEmoji = () =>
 
 const EditorHeader = () => {
   const { state } = useRootContext();
-  const file = EditorDuck.selectors.getImageFile(state);
+  const { file } = EditorDuck.selectors.getImage(state);
   const { createdDate } = EditorDuck.selectors.getExifData(state);
 
   return (

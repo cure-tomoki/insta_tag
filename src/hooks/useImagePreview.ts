@@ -16,11 +16,8 @@ const convertHeicToJpeg = async <x extends File>(heic: x): Promise<Blob> => {
 };
 
 const useImagePreview = (): string | null => {
-  const { state } = useRootContext();
-  const file = EditorDuck.selectors.getImageFile(state);
-  const [previewImageURL, setPreviewImageURL] = React.useState<string | null>(
-    null
-  );
+  const { state, dispatch } = useRootContext();
+  const { file, previewURL } = EditorDuck.selectors.getImage(state);
 
   React.useEffect(() => {
     if (file === null) return;
@@ -28,10 +25,12 @@ const useImagePreview = (): string | null => {
     (async () => {
       const imageFile =
         file.type === 'image/heic' ? await convertHeicToJpeg(file) : file;
-      setPreviewImageURL(createObjectURL(imageFile));
+      const url = createObjectURL(imageFile);
+      dispatch(EditorDuck.actions.setImage({ file, previewURL: url }));
     })();
   }, [file]);
-  return previewImageURL;
+
+  return previewURL;
 };
 
 export default useImagePreview;

@@ -31,7 +31,7 @@ const generateCaptionText = (exif: Instatag.ExifData): string => {
 
 const EditorCaptionEditor = () => {
   const { state } = useRootContext();
-  const file = EditorDuck.selectors.getImageFile(state);
+  const { file } = EditorDuck.selectors.getImage(state);
   const exif = EditorDuck.selectors.getExifData(state);
 
   const editorRef = React.useRef<HTMLTextAreaElement>();
