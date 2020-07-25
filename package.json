@@ -11,6 +11,7 @@
   "dependencies": {
     "@rehooks/component-size": "^1.0.3",
     "@styled-icons/boxicons-logos": "^10.6.0",
+    "@styled-icons/boxicons-regular": "^10.6.0",
     "@styled-icons/boxicons-solid": "^10.6.0",
     "exifreader": "^3.12.0",
     "heic2any": "^0.0.3",

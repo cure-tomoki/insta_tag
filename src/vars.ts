@@ -5,15 +5,16 @@ export const MAX_PAGE_WIDTH = 600;
 // colors
 export const colors = {
   // grayscale
-  darkgray: '#333',
+  black: '#000000',
+  darkgray: '#333333',
   gray: '#757575',
   lightgray: '#858585',
-  darksilver: '#aaa',
-  dimsilver: '#ccc',
+  darksilver: '#aaaaaa',
+  dimsilver: '#cccccc',
   silver: '#e2e2e2',
   lightsilver: '#efefef',
   whitesmoke: '#f8f8f8',
-  white: '#fff',
+  white: '#ffffff',
 
   // color
   red: '#ed4956',

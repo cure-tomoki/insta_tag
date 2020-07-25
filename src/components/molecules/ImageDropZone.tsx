@@ -11,6 +11,7 @@ interface Props {
   onDrop: <T extends File>(acceptedFiles: T[]) => void;
   acceptedFileTypes: string[];
   previewImageURL: string | null;
+  disabled?: boolean;
 }
 
 const calculateMaxHeight = (width: number) => width / MAX_DISPLAY_ASPECT_RATIO;
@@ -22,7 +23,10 @@ const ImageDropZone = (props: Props) => {
 
   const onDrop = React.useCallback(props.onDrop, []);
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    disabled: props.disabled ?? false,
+  });
 
   React.useEffect(() => {
     setMaxHeight(calculateMaxHeight(size.width));
