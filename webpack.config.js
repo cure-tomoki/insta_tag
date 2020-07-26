@@ -18,7 +18,7 @@ module.exports = {
   },
   output: {
     path: resolve('dist/public'),
-    publicPath: '/',
+    publicPath: isDev ? '/' : './public',
     filename: '[name].[contenthash].js',
   },
   resolve: {
@@ -60,7 +60,6 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: isDev ? 'index.html' : '../index.html',
-      base: isDev ? false : 'https://tomotetra.github.io/insta_tag',
       template: './src/index.html',
       scriptLoading: 'defer',
     }),
