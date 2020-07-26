@@ -2,7 +2,6 @@ import produce from 'immer';
 import { createSelector } from 'reselect';
 import actionCreatorFactory, { isType } from 'typescript-fsa';
 
-import constants from '~/constants';
 import { RootState } from '~/ducks';
 import { Reducer } from '~/utils/reducerUtils';
 
@@ -12,14 +11,14 @@ export interface EditorState {
   imageFile: File | null;
   imagePreviewURL: string | null;
   exifData: Instatag.ExifData;
-  hashtags: string[];
+  exifText: string;
 }
 
 export const initialState: EditorState = {
   imageFile: null,
   imagePreviewURL: null,
   exifData: {},
-  hashtags: [],
+  exifText: '',
 };
 
 export const selectors = {
@@ -30,32 +29,32 @@ export const selectors = {
     }),
     (image) => image
   ),
-  getHashtags: createSelector(
-    (state: RootState) => state.editor.hashtags,
-    (hashtags) => hashtags
-  ),
-  getHashtagCountWithinLimit: createSelector(
-    (state: RootState) => state.editor.hashtags,
-    (hashtags) => hashtags.length <= constants.instagram.hastagCountMax
-  ),
   getExifData: createSelector(
     (state: RootState) => state.editor.exifData,
     (exifData) => exifData
+  ),
+  getText: createSelector(
+    (state: RootState) => state.editor.exifText,
+    (exifText) => ({
+      exifText,
+    })
   ),
 };
 
 const actionTypes = {
   SET_IMAGE: 'SET_IMAGE',
   SET_EXIF: 'SET_EXIF',
-  ADD_HASHTAG: 'ADD_HASHTAG',
+  SET_EXIF_TEXT: 'SET_EXIF_TEXT',
 };
 
 export const actions = {
   setImage: actionCreator<{ file: File; previewURL: string }>(
     actionTypes.SET_IMAGE
   ),
-  setExif: actionCreator<{ exifData: Instatag.ExifData }>(actionTypes.SET_EXIF),
-  addHashTag: actionCreator<{ name: string }>(actionTypes.ADD_HASHTAG),
+  setExif: actionCreator<{ data: Instatag.ExifData; text: string }>(
+    actionTypes.SET_EXIF
+  ),
+  setExifText: actionCreator<{ text: string }>(actionTypes.SET_EXIF_TEXT),
 };
 
 export const reducer: Reducer<EditorState> = (state, action) => {
@@ -67,13 +66,14 @@ export const reducer: Reducer<EditorState> = (state, action) => {
     });
   } else if (isType(action, actions.setExif)) {
     return produce(state, (draft) => {
-      const { exifData } = action.payload;
-      draft.exifData = exifData;
+      const { data, text } = action.payload;
+      draft.exifData = data;
+      draft.exifText = text;
     });
-  } else if (isType(action, actions.addHashTag)) {
+  } else if (isType(action, actions.setExifText)) {
     return produce(state, (draft) => {
-      const { name } = action.payload;
-      draft.hashtags.push(name);
+      const { text } = action.payload;
+      draft.exifText = text;
     });
   } else {
     return state;

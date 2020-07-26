@@ -52,6 +52,32 @@ export const readExifData = async (
   };
 };
 
+export const generateExifText = (exif: Instatag.ExifData): string => {
+  const EMPTY_LINE = '.';
+  const text = [
+    exif.createdDate,
+    EMPTY_LINE,
+    (exif.camera?.makeModel || exif.lens?.makeModel) &&
+      [exif.camera?.makeModel, exif.lens?.makeModel]
+        .filter(Boolean)
+        .join(' / '),
+    (exif.settings?.iso ||
+      exif.settings?.fNumber ||
+      exif.settings?.shutterSpeed) &&
+      [
+        exif.settings?.iso && `ISO: ${exif.settings?.iso}`,
+        exif.settings?.fNumber && `A: ${exif.settings?.fNumber}`,
+        exif.settings?.shutterSpeed && `T: ${exif.settings?.shutterSpeed}s`,
+      ]
+        .filter(Boolean)
+        .join(' / '),
+    EMPTY_LINE,
+  ]
+    .filter(Boolean)
+    .join('\n');
+  return text;
+};
+
 const convertHeicToJpeg = async <x extends File>(heic: x): Promise<Blob> => {
   const jpeg = await (await loadHeic2any())({
     blob: heic,

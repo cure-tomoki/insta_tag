@@ -1,4 +1,5 @@
 import useComponentSize from '@rehooks/component-size';
+import { Upload } from '@styled-icons/boxicons-regular';
 import * as React from 'react';
 import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
@@ -39,7 +40,10 @@ const ImageDropZone = (props: Props) => {
         // no image -> display placeholder
         <DropZonePlaceholderContainer>
           <DropZonePlaceholder>
-            <p>ファイルをアップロード</p>
+            <p>
+              <UploadIcon aria-hidden={true} />
+              写真をアップロード
+            </p>
           </DropZonePlaceholder>
         </DropZonePlaceholderContainer>
       ) : (
@@ -81,11 +85,18 @@ const DropZonePlaceholder = styled.div({
   justifyContent: 'center',
 });
 
+const UploadIcon = styled(Upload)({
+  width: 20,
+  height: 20,
+  marginRight: vars.spacing.normal,
+});
+
 const DropZonePreviewImgContainer = styled.div({
   display: 'flex',
   justifyContent: 'center',
   width: '100%',
 });
+
 const DropZonePreviewImg = styled.img({
   objectFit: 'contain',
   maxWidth: '100%',

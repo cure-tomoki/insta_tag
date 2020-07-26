@@ -6,39 +6,37 @@ import ImageDropZone from '~/components/molecules/ImageDropZone';
 import * as EditorDuck from '~/ducks/EditorDuck';
 import useRootContext from '~/hooks/useRootContext';
 import { assert } from '~/utils/commonUtils';
-import { createImagePreviewURL, readExifData } from '~/utils/imageUtil';
+import {
+  createImagePreviewURL,
+  readExifData,
+  generateExifText,
+} from '~/utils/imageUtil';
 import * as vars from '~/vars';
 
 const acceptedFileTypes = ['image/jpeg', 'image/png', 'image/heic'];
 
 const EditorImageDropZone = () => {
   const { state, dispatch } = useRootContext();
-  const { file, previewURL } = EditorDuck.selectors.getImage(state);
+  const { previewURL } = EditorDuck.selectors.getImage(state);
 
   const [isProcessing, setIsProcessing] = React.useState(false);
-
-  React.useEffect(() => {
-    if (file === null) return;
-    (async () => {
-      try {
-        const exif = await readExifData(file);
-        dispatch(EditorDuck.actions.setExif({ exifData: exif }));
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, [file]);
 
   const handleImageDrop = <x extends File>(acceptedFiles: x[]) => {
     const acceptedFile = acceptedFiles[0]; // ignore rest :p
     try {
       (async () => {
         setIsProcessing(true);
+        // preview image
         const url = await createImagePreviewURL(acceptedFile);
         assert(url !== null, 'could not create image preview url');
         dispatch(
           EditorDuck.actions.setImage({ file: acceptedFile, previewURL: url })
         );
+        // exif data / text
+        const exif = await readExifData(acceptedFile);
+        const text = generateExifText(exif);
+        dispatch(EditorDuck.actions.setExif({ data: exif, text }));
+
         setIsProcessing(false);
       })();
     } catch (error) {
