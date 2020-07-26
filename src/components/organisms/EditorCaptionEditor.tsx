@@ -49,7 +49,7 @@ const EditorCaptionEditor = () => {
             value={text}
             onChange={handleTextChange}
           ></TextArea>
-          <button type="submit">submit</button>
+          <SubmitButton type="submit">保存</SubmitButton>
         </form>
       )}
 
@@ -68,21 +68,34 @@ const EditorCaptionEditor = () => {
 };
 
 const TextArea = styled.textarea({
+  display: 'block',
   height: 150,
   width: '100%',
   boxSizing: 'border-box',
   fontSize: vars.fontSize.xxs,
   padding: vars.spacing.normal,
-  border: `1px solid ${vars.colors.lightgray}`,
+  marginBottom: vars.spacing.normal,
+  border: `1px solid ${vars.colors.dimsilver}`,
   borderRadius: vars.radius.double,
   fontFamily: vars.fontFamily.default,
+});
+
+const SubmitButton = styled.button({
+  display: 'block',
+  width: '100%',
+  padding: vars.spacing.normal,
+  color: vars.colors.white,
+  backgroundColor: vars.colors.lightBlue,
+  border: 'none',
+  borderRadius: vars.radius.normal,
+  fontWeight: 'bold',
 });
 
 const EditButton = styled.button({
   width: '100%',
   padding: 0,
   textAlign: 'left',
-  whiteSpace: 'pre',
+  whiteSpace: 'pre-wrap',
   background: 'none',
   border: 'none',
   fontSize: vars.fontSize.xxs,
