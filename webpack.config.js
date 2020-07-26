@@ -17,7 +17,7 @@ module.exports = {
     main: './src/index.tsx',
   },
   output: {
-    path: resolve('dist'),
+    path: resolve('dist/public'),
     publicPath: '/',
     filename: '[name].[contenthash].js',
   },
@@ -59,6 +59,8 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(target),
     }),
     new HtmlWebpackPlugin({
+      filename: isDev ? 'index.html' : '../index.html',
+      base: isDev ? false : 'https://tomotetra.github.io/insta_tag',
       template: './src/index.html',
       scriptLoading: 'defer',
     }),
