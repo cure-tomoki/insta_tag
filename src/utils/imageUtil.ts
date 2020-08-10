@@ -15,6 +15,26 @@ const loadHeic2any = async () => {
   return heic2any.default;
 };
 
+// reimplements arrayBuffer using FileReader
+const getArrayBuffer = async (target: File | Blob): Promise<ArrayBuffer> => {
+  const arrayBuffer =
+    target instanceof File
+      ? File.prototype.arrayBuffer
+      : Blob.prototype.arrayBuffer;
+  if (arrayBuffer !== undefined) {
+    return await target.arrayBuffer();
+  }
+  // arrayBuffer is undefined
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      assert(reader.result instanceof ArrayBuffer);
+      resolve(reader.result);
+    };
+    reader.readAsArrayBuffer(target);
+  });
+};
+
 const getMakeModel = (make?: string, model?: string): string | undefined => {
   if (model === undefined) {
     return undefined;
@@ -29,7 +49,7 @@ export const readExifData = async (
   imageFile: File
 ): Promise<Instatag.ExifData> => {
   assert(imageFile !== null, 'image file was not provided');
-  const fileBuffer = await imageFile.arrayBuffer();
+  const fileBuffer = await getArrayBuffer(imageFile);
   const exif = (await loadExifReader()).load(fileBuffer);
   return {
     createdDate: parseExifDate(exif.DateTime?.description),
