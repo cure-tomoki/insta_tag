@@ -37,7 +37,7 @@ const InstaMockTemplate = ({
   );
 };
 
-const Container = styled.article({
+const Container = styled.main({
   marginTop: vars.spacing.triple,
   backgroundColor: vars.colors.white,
   border: `1px solid ${vars.colors.dimsilver}`,

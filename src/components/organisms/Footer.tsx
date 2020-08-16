@@ -13,8 +13,12 @@ const Footer = () => {
         {`tomotetra ${year}`}
       </span>
       <RightContent>
-        <IconLink href="https://github.com/tomotetra/insta_tag" target="_blank">
-          <_Github aria-label="github" />
+        <IconLink
+          href="https://github.com/tomotetra/insta_tag"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <_Github aria-label="view on github" aria-hidden={false} />
         </IconLink>
       </RightContent>
     </_Footer>
@@ -31,7 +35,7 @@ const _Footer = styled.footer({
   marginTop: vars.spacing.quadruple,
   padding: vars.spacing.double,
   fontSize: vars.fontSize.xxxs,
-  color: vars.colors.gray,
+  color: vars.colors.darkgray,
   borderTop: `1px solid ${vars.colors.lightsilver}`,
 });
 
