@@ -18,7 +18,7 @@ module.exports = {
   },
   output: {
     path: resolve('dist/public'),
-    publicPath: isDev ? '/' : './public',
+    publicPath: isDev ? '/' : './public/',
     filename: '[name].[contenthash].js',
   },
   resolve: {
