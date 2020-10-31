@@ -2,7 +2,7 @@
 
 Generate instagram captions from EXIF data.
 
-Available at https://tomotetra.github.io/insta_tag/
+Available at https://cure-tomoki.github.io/insta_tag/
 
 ## development
 

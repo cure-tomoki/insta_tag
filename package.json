@@ -2,8 +2,8 @@
   "name": "insta_tag",
   "version": "1.0.0",
   "main": "src/index.ts",
-  "repository": "https://github.com/tomotetra/insta_tag",
-  "author": "tomotetra",
+  "repository": "https://github.com/cure-tomoki/insta_tag",
+  "author": "cure-tomoki",
   "license": "MIT",
   "engines": {
     "node": "12.x"

@@ -10,11 +10,11 @@ const Footer = () => {
     <_Footer>
       <span>
         <CopyRight>&#x24B8;</CopyRight>
-        {`tomotetra ${year}`}
+        {`cure-tomoki ${year}`}
       </span>
       <RightContent>
         <IconLink
-          href="https://github.com/tomotetra/insta_tag"
+          href="https://github.com/cure-tomoki/insta_tag"
           target="_blank"
           rel="noreferrer"
         >
