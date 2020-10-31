@@ -90,7 +90,7 @@ export const generateExifText = (exif: Instatag.ExifData): string => {
         exif.settings?.shutterSpeed && `T: ${exif.settings?.shutterSpeed}s`,
       ]
         .filter(Boolean)
-        .join(' / '),
+        .join(' '),
     EMPTY_LINE,
   ]
     .filter(Boolean)
